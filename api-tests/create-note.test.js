@@ -2,9 +2,11 @@ const { spec, request } = require("pactum");
 const { faker } = require("@faker-js/faker");
 const baseUrl = "https://practice.expandtesting.com/notes/api";
 
-let randomEmail = faker.internet.email();
-let randomPassword = faker.internet.password();
-let randomUserName = faker.internet.userName();
+const randomEmail = faker.internet.email();
+const randomPassword = faker.internet.password();
+const randomUserName = faker.internet.userName();
+const randomJobTitle = faker.person.jobTitle();
+const randomDescription = faker.lorem.sentence({ min: 5, max: 10 });
 
 const requestBodyRegister = {
   email: randomEmail,
@@ -17,7 +19,13 @@ const requestBodyLogin = {
   password: randomPassword,
 };
 
-describe("Login user endpoint test suites ", () => {
+requestBodyNote = {
+  title: randomJobTitle,
+  description: randomDescription,
+  category: "Personal",
+};
+
+describe("Create note test suites ", () => {
   before(async () => {
     request.setDefaultTimeout(10000);
 
@@ -27,30 +35,30 @@ describe("Login user endpoint test suites ", () => {
       .withHeaders("Content-Type", "application/json")
       .withBody(requestBodyRegister)
       .expectBodyContains("User account created successfully");
-  });
 
-  it("Login user", async () => {
-    await spec()
+    const login = await spec()
       .post(`${baseUrl}/users/login`)
       .expectStatus(200)
       .withHeaders("Content-Type", "application/json")
       .withBody(requestBodyLogin)
       .expectBodyContains("Login successful");
+
+    requestToken = login.body.data.token;
   });
 
-  it("Try to login only with email.", async () => {
+  it("Create note test", async () => {
     await spec()
-      .post(`${baseUrl}/users/login`)
-      .expectStatus(400)
-      .withHeaders("Content-Type", "application/json")
-      .withBody(requestBodyLogin.randomEmail);
+      .post(`${baseUrl}/notes`)
+      .expectStatus(200)
+      .withHeaders({ "X-Auth-Token": requestToken })
+      .withBody(requestBodyNote)
+      .expectBodyContains("Note successfully created");
   });
 
-  it("Try to login only with password.", async () => {
+  it("Try to create note with no auth token test", async () => {
     await spec()
-      .post(`${baseUrl}/users/login`)
-      .expectStatus(400)
-      .withHeaders("Content-Type", "application/json")
-      .withBody(requestBodyLogin.randomPassword);
+      .post(`${baseUrl}/notes`)
+      .expectStatus(401)
+      .withHeaders("Content-Type", "application/json");
   });
 });
