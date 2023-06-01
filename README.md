@@ -7,6 +7,9 @@ Cypress automation test for: https://magento.softwaretestingboard.com/
 <span align="center">
 
 <br/>
+  ![alt test](https://asset.brandfetch.io/idIq_kF0rb/idZxkJkFIi.svg)
+  
+  <br/>
 
 ## Run API tests via CLI
 ```sh
