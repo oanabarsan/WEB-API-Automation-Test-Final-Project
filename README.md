@@ -7,13 +7,14 @@ Cypress automation test for: https://magento.softwaretestingboard.com/
 <span align="center">
 
 
-<br/>
+  <br/>
+
 ## Run API tests via CLI
 ```sh
 npm run api-tests
 ```
+<br/>
 
-  <br/>
 ## Run Cypress tests via CLI
 ```sh
 npm run cy:open
