@@ -7,17 +7,12 @@ Cypress automation test for: https://magento.softwaretestingboard.com/
 <span align="center">
 
 
- <br/>
-![alt text](https://avatars.githubusercontent.com/u/76616193?s=280&v=4)
-  
 <br/>
 ## Run API tests via CLI
 ```sh
 npm run api-tests
 ```
-<br/>
-![alt text] (https://asset.brandfetch.io/idIq_kF0rb/idFkwwvqgX.png)
-  
+
   <br/>
 ## Run Cypress tests via CLI
 ```sh
