@@ -1,8 +1,8 @@
 # WEB-API-Automation-Test-Final-Project
 
-API automation test for: https://practice.expandtesting.com/note/api
+API automation tests for: https://practice.expandtesting.com/note/api
 
-Cypress automation test for: https://magento.softwaretestingboard.com/ 
+Cypress automation tests for: https://magento.softwaretestingboard.com/ 
 
 <span align="center">
 
