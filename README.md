@@ -7,7 +7,7 @@ Cypress automation test for: https://magento.softwaretestingboard.com/
 <span align="center">
 
 <br/>
-  ![alt text](https://asset.brandfetch.io/idIq_kF0rb/idZxkJkFIi.svg)
+  ![alt text]([https://asset.brandfetch.io/idIq_kF0rb/idZxkJkFIi.svg](https://asset.brandfetch.io/idIq_kF0rb/idFkwwvqgX.png))
   
   <br/>
 
