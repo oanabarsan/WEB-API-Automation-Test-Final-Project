@@ -9,7 +9,8 @@
     "cy:chrome:headed": "npx cypress run --browser chrome --headed",
     "cy:chrome:headless": "npx cypress run --browser chrome",
     "cy:firefox:headed": "npx cypress run --browser firefox --headed",
-    "api-test": "npx mocha api-tests --reporter mochawesome --reporter-options reportDir=Results,reportFilename=api-test-results --timeout 10000"
+    "cy:cloud": "npx cypress run browser chrome --record --key 5a89497c-da77-456e-a5cd-7c7e855183df",
+    "api-tests": "npx mocha api-tests --reporter mochawesome --reporter-options reportDir=Results,reportFilename=api-test-results --timeout 10000"
   },
   "keywords": [],
   "author": "",
