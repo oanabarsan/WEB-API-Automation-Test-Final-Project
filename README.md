@@ -20,6 +20,7 @@ npm run api-tests
 npm run cy:open
 npm run cy:chrome:headed
 npm run cy:chrome:headless
+npm run cy:cloud
 ```
   
   </span>
