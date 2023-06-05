@@ -4,11 +4,9 @@ import BrasAndTanksPage from "../pages/BrasAndTanksPage";
 import NavBarPage from "../pages/NavBarPage";
 import SaleCategoryMenuPage from "../pages/SaleCategoryMenuPage";
 
+const productQuantity = 2;
 
 describe("Add to cart product test suite", () => {
-
-  const productQuantity = 2;
-
   it("Add to cart test", () => {
     NavBarPage.getSaleLink().click();
     SaleCategoryMenuPage.getBrasAndTanksLink().click({force: true});
@@ -23,6 +21,5 @@ describe("Add to cart product test suite", () => {
     BrasAndTanksPage.getAddToCartBtn().contains("Add to Cart").click();
     cy.wait("@addProductAPI").its("response.statusCode").should("eq", 200);
     cy.get("div[data-ui-id='message-success']").contains('You added Breathe-Easy Tank to your shopping cart.').should("be.visible");
-
   });
 });
