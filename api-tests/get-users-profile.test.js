@@ -1,7 +1,6 @@
 const { spec, request } = require("pactum");
 const { faker } = require("@faker-js/faker");
 const baseUrl = "https://practice.expandtesting.com/notes/api";
-const getNotesSchema = require('../api-tests/data/response/get-notes-response-schema.json');
 
 let randomEmail = faker.internet.email();
 let randomPassword = faker.internet.password();
@@ -26,7 +25,7 @@ const requestBodyNote = {
   category: "Personal",
 };
 
-describe("Get all notes endpoint test suite", () => {
+describe("Get users profile test suite", () => {
   before(async () => {
     request.setDefaultTimeout(10000);
 
@@ -47,21 +46,20 @@ describe("Get all notes endpoint test suite", () => {
     requestToken = login.body.data.token;
   });
 
-  it("Get all notes test", async () => {
+  it("Get users profile test", async () => {
     await spec()
-      .get(`${baseUrl}/notes`)
+      .get(`${baseUrl}/users/profile`)
       .expectStatus(200)
       .expectResponseTime(3000)
       .withHeaders({
         "X-Auth-Token": requestToken,
         "Content-Type": "application/json",
-      })
-      .expectJsonSchema(getNotesSchema);
+      });
   });
 
-  it("Get all notes without auth token test", async () => {
+  it("Get users profile without auth token test", async () => {
     await spec()
-      .get(`${baseUrl}/notes`)
+      .get(`${baseUrl}/users/profile`)
       .expectStatus(401)
       .expectResponseTime(3000)
       .withHeaders("Content-Type", "application/json");

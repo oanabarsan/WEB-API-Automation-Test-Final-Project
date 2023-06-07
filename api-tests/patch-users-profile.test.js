@@ -1,18 +1,22 @@
 const { spec, request } = require("pactum");
 const { faker } = require("@faker-js/faker");
 const baseUrl = "https://practice.expandtesting.com/notes/api";
-const getNotesSchema = require('../api-tests/data/response/get-notes-response-schema.json');
 
-let randomEmail = faker.internet.email();
-let randomPassword = faker.internet.password();
-let randomUserName = faker.internet.userName();
-
-let requestToken = "";
+const randomEmail = faker.internet.email();
+const randomPassword = faker.internet.password();
+const randomUserName = faker.internet.userName();
+const randomPhoneNumber = "0748648813";
+const randomCompany = faker.company.name();
+const newUserName = faker.internet.userName();
+const newPhoneNumber = "0757612883";
+const newCompany = faker.company.name();
 
 const requestBodyRegister = {
   email: randomEmail,
   name: randomUserName,
   password: randomPassword,
+  phone: randomPhoneNumber,
+  company: randomCompany,
 };
 
 const requestBodyLogin = {
@@ -20,13 +24,13 @@ const requestBodyLogin = {
   password: randomPassword,
 };
 
-const requestBodyNote = {
-  title: "Practice API automation test",
-  description: "Create API automation test",
-  category: "Personal",
-};
+const newUserInfo = {
+  name: newUserName,
+  phone: newPhoneNumber,
+  company: newCompany,
+}
 
-describe("Get all notes endpoint test suite", () => {
+describe("Update user profile test suites ", () => {
   before(async () => {
     request.setDefaultTimeout(10000);
 
@@ -47,23 +51,19 @@ describe("Get all notes endpoint test suite", () => {
     requestToken = login.body.data.token;
   });
 
-  it("Get all notes test", async () => {
+  it("Update user profile test", async () => {
     await spec()
-      .get(`${baseUrl}/notes`)
+      .patch(`${baseUrl}/users/profile`)
       .expectStatus(200)
-      .expectResponseTime(3000)
-      .withHeaders({
-        "X-Auth-Token": requestToken,
-        "Content-Type": "application/json",
-      })
-      .expectJsonSchema(getNotesSchema);
+      .withHeaders({ "X-Auth-Token": requestToken })
+      .withBody(newUserInfo)
+      .expectBodyContains("Profile updated successful");
   });
 
-  it("Get all notes without auth token test", async () => {
+  it("Try to update user profile with no auth token test", async () => {
     await spec()
-      .get(`${baseUrl}/notes`)
+      .patch(`${baseUrl}/users/profile`)
       .expectStatus(401)
-      .expectResponseTime(3000)
       .withHeaders("Content-Type", "application/json");
   });
 });
