@@ -1,7 +1,6 @@
 const { spec, request } = require("pactum");
 const { faker } = require("@faker-js/faker");
 const baseUrl = "https://practice.expandtesting.com/notes/api";
-
 const randomEmail = faker.internet.email();
 const randomPassword = faker.internet.password();
 const randomUserName = faker.internet.userName();
