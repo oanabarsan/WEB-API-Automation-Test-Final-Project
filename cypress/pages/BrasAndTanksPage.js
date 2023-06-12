@@ -17,6 +17,11 @@ class BrassAndTanksPage{
   getAddToCartBtn(){
     return cy.get('#product-addtocart-button');
   }
+
+    
+  getShoppingCartLink(){
+    return cy.get('a[href="https://magento.softwaretestingboard.com/checkout/cart/"]').contains('shopping cart');
+  }
 }
 
 export default new BrassAndTanksPage();
