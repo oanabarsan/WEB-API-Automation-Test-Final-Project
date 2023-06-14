@@ -1,7 +1,4 @@
 class ShoppingCartPage{
-  getCheckoutBtn(){
-    return cy.get('button').contains('Proceed to Checkout');
-  }
 
   getQtyField(){
     return cy.get("input[data-role='cart-item-qty']");
@@ -9,6 +6,10 @@ class ShoppingCartPage{
 
   getUpdatedCartBtn(){
     return cy.get("button").contains("Update Shopping Cart");
+  }
+
+  getCheckoutBtn(){
+    return cy.get('button').contains('Proceed to Checkout');
   }
 
 }
