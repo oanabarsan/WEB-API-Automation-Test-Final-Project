@@ -6,6 +6,7 @@ import ShoppingCartPage from "../pages/ShoppingCartPage";
 
 const productQuantity = 2;
 const updatedQty = 4;
+const invalidCouponCode = "1234"
 
 describe("Add to cart product test suite", () => {
   beforeEach("Add to cart", () => {
@@ -39,5 +40,12 @@ describe("Add to cart product test suite", () => {
       "value",
       updatedQty
     );
+  });
+
+  it.only("Try to apply non-existing discount coupon", () => {
+    ShoppingCartPage.getApplyCouponLink().click();
+    ShoppingCartPage.getCouponCodeField().type(invalidCouponCode);
+    ShoppingCartPage.getApplyCouponBtn().click();
+    cy.get('div[data-ui-id="message-error"]').contains(`'The coupon code ${invalidCouponCode} is not valid.'`).should('be.visible');
   });
 });

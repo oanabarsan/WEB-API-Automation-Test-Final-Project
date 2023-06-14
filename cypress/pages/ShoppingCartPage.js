@@ -12,6 +12,18 @@ class ShoppingCartPage{
     return cy.get('button').contains('Proceed to Checkout');
   }
 
+  getCouponCodeField(){
+    return cy.get('#coupon_code');
+  }
+
+  getApplyCouponLink(){
+    return cy.get('#block-discount-heading');
+  }
+
+  getApplyCouponBtn(){
+    return cy.get("button.action.apply.primary").contains("Apply Discount");
+  }
+
 }
 
 export default new ShoppingCartPage();
