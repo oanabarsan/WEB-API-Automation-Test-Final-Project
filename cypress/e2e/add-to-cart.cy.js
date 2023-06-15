@@ -42,7 +42,7 @@ describe("Add to cart product test suite", () => {
     );
   });
 
-  it.only("Try to apply non-existing discount coupon", () => {
+  it("Try to apply non-existing discount coupon", () => {
     ShoppingCartPage.getApplyCouponLink().click();
     ShoppingCartPage.getCouponCodeField().type(invalidCouponCode);
     ShoppingCartPage.getApplyCouponBtn().click();
